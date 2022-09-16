@@ -33,7 +33,7 @@ class pilhaCustomizada:
             self.pilha[self.topo] = valor
             self.topo += 1
         else:
-            print("fora do range")
+            print("fora do range ou valor inválido")
 
     def desempilhar(self):
         if self.verificaVazia() == False:
@@ -49,5 +49,5 @@ class pilhaCustomizada:
 c = pilhaCustomizada(9,"I")
 c.empilhar(2)
 c.empilhar(3)
-c.desempilhar()
+c.empilhar('0')
 print(c.toString())
