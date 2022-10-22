@@ -6,13 +6,13 @@ class pilhaCustomizada:
         self.topo = 0
         self.tamanho = tamanho
 
-    def  type(self, tipo):
+    def type(self, tipo):
         if tipo == "I":
             return 0
         if tipo == "F":
             return 0.0
         if tipo == "S":
-            return  ""
+            return ""
         else:
             print("caracter inválido")
 
@@ -29,24 +29,24 @@ class pilhaCustomizada:
             return False
 
     def empilhar(self, valor):
-        if (self.verificaCheia() == False and type(valor)==type(self.tipo)):
+        if (self.verificaCheia() == False and type(valor) == type(self.tipo)):
             self.pilha[self.topo] = valor
             self.topo += 1
         else:
-            print("fora do range ou valor inválido")
+            print(f"{valor}  do tipo {type(valor)} esta fora do range ou valor é")
 
     def desempilhar(self):
         if self.verificaVazia() == False:
             self.topo -= 1
         else:
-            print("Fora do range")
+            print("Não existem dados a serem removidos")
 
     def toString(self):
 
         return self.pilha[0:self.topo]
 
 
-c = pilhaCustomizada(9,"I")
+c = pilhaCustomizada(9, "I")
 c.empilhar(2)
 c.empilhar(3)
 c.empilhar('0')
