@@ -1,4 +1,3 @@
-import math
 class filaPrioritaria:
     def __init__(self, tamanho):
         self.tamanho = tamanho
