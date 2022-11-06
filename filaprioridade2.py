@@ -1,48 +1,41 @@
 class fila:
     def __init__(self, arr=None) -> None:
         self.arr = []
-        self.tamanho = 0
-        self.indexInicial = 0
-        self.indexFinal = 0
         if arr != None:
             for i in arr:
                 self.append(i["prioridade"], i["dado"])
 
     def __str__(self) -> str:
         result = ""
-        for i in range(self.indexInicial, self.indexFinal):
+        for i in range(len(self.arr)):
             item = self.arr[i]
-            if i == self.indexInicial:
-                result = item
+            if result == "":
+                result = str(item)
             else:
                 result = str(result) + "," + str(item)
         return "[" + str(result) + "]"
 
     def append(self, prioridade, dado):
-        self.indexFinal += 1
-        self.arr.append({"prioridade": prioridade, "dado": dado})
-        proximoItem = {"prioridade": prioridade, "dado": dado}
-        for i in range(self.indexFinal-1):
-            itemAtual = self.arr[i]
-            if itemAtual["prioridade"] > proximoItem["prioridade"]:
-                self.arr[i] = proximoItem
-                proximoItem = self.arr[i+1]
-                self.arr[i+1] = itemAtual
+        novo = {"prioridade": prioridade, "dado": dado}
+        for i in range(len(self.arr)):
+            atual = self.arr[i]
+            if atual["prioridade"] > novo["prioridade"]:
+                self.arr[i] = novo
+                novo = atual
+        self.arr.append(novo)
 
     def remove(self):
-        if self.indexFinal != self.indexInicial:
-            self.indexInicial += 1
-        else:
-            raise Exception("Fila vazia")
-        return self.arr[self.indexInicial-1]
+        arrAux = []
+        retirado = self.arr[0]
+        for i in range(1, len(self.arr)):
+            arrAux.append(self.arr[i])
+        self.arr = arrAux
+        return retirado
 
 
-nova = fila([{"prioridade": 3, "dado": "estudar"}, {
-            "prioridade": 2, "dado": "trabalhar"}])
-
-nova.append(5, "jogar")
-nova.append(1, "Play")
-print(nova)
-print(nova.remove())
+nova = fila([{"prioridade": 3, "dado": "estudar"}])
+nova.append(1, "estudar")
+nova.append(4, "viajar")
+nova.append(2, "trabalhar")
 print(nova.remove())
 print(nova)
