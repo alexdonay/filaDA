@@ -14,7 +14,7 @@ class pilhaCustomizada:
         if tipo == "S":
             return ""
         else:
-            print("caracter inválido")
+            print("caractere inválido")
 
     def verificaCheia(self):
         if self.tamanho == self.topo:
