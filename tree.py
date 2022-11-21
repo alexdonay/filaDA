@@ -18,17 +18,17 @@ class Tree:
             self.insertRight(value)
 
     def insertLeft(self, value):
-        if self.left is None:
-            self.left = Tree(value)
-        else:
+        if self.left is not None:
             self.left.insert(value)
+        else:
+            self.left = Tree(value)
 
     def insertRight(self, value):
-        if self.right is None:
-            self.right = Tree(value)
-        else:
+        if self.right is not None:
             self.right.insert(value)
-
+        else:
+            self.right = Tree(value)
+        
     def printValues(self):
         if self.left:
             self.left.printValues()
@@ -36,9 +36,18 @@ class Tree:
         if self.right:
             self.right.printValues()
 
+    def find(self, value) -> int:
+        if self.left:
+            self.left.find(value)
+        if self.right:
+            self.right.find(value)
+        if self.value == value:
+            print(value)
+        return self.value
 tree = Tree()
 tree.insert(19)
 tree.insert(24)
 tree.insert(5)
 tree.insert(21)
-tree.printValues()
+print(tree.find(21))
+
