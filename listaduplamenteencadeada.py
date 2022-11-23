@@ -4,9 +4,9 @@
 # • Inserir no final à inserir_final() v
 # • Excluir do início à excluir_inicio()v
 # • Excluir do final à excluir_final()v
-# • Excluir da posição à excluir_posição()
-# • Mostrar inicio à mostrar_inicio()
-# • Mostrar final à mostrar_final()
+# • Excluir da posição à excluir_posição()v
+# • Mostrar inicio à mostrar_inicio()v
+# • Mostrar final à mostrar_final()v
 class lista:
     def __init__(self, value=None):
         self.value = value
@@ -35,27 +35,26 @@ class lista:
     def excluir_inicio(self):
         self.root = self.root.next
         self.root.last = None
-    
-    def excluir_final(self):
-            self.fim = self.fim.last
-            self.fim.next = None
-    
-    def excluir_posição(self,posicao):
-        
-        atual = self.root
-        try:
-            
-            for i in range(posicao+1):
-                print(f"posicao {posicao} indice {i}")
-                if i == posicao:
-                    atual.next = atual.next.next
-                else:
-                    atual = atual.next
 
-            
-        except:
-            print("indice não encontrado")
-            
+    def excluir_final(self):
+        self.fim = self.fim.last
+        self.fim.next = None
+
+    def excluir_posição(self, posicao):
+        if posicao == 0:
+            self.excluir_inicio()
+        else:
+            atual = self.root
+            for i in range(posicao-1):
+                atual = atual.next
+            if atual.next == None:
+                self.excluir_final()
+            else:
+                atual.next = atual.next.next
+    def mostrar_inicio(self):
+        return self.root.value
+    def mostrar_final(self):
+        return self.fim.value
 
     def __repr__(self):
         atual = self.root
@@ -87,3 +86,5 @@ listaencadeada.excluir_final()
 print(listaencadeada)
 listaencadeada.excluir_posição(0)
 print(listaencadeada)
+print(listaencadeada.mostrar_inicio())
+print(listaencadeada.mostrar_final())
